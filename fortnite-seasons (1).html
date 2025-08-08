@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Fortnite: Historia Wszystkich Sezonów</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1e2440 0%, #31296b 100%);
+      color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #6e1ee8 0%, #ff3b5c 100%);
+      padding: 40px 0 30px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      letter-spacing: 7px;
+      text-shadow: 2px 4px 10px #000, 0 0 40px #f9ff83;
+      animation: neon-flicker 2s infinite alternate;
+    }
+
+    @keyframes neon-flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 2px 4px 10px #000, 0 0 40px #f9ff83;
+      }
+      20%, 22%, 24%, 55% {
+        text-shadow: 2px 4px 10px #000, 0 0 10px #ffe;
+      }
+    }
+
+    .intro {
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      background: rgba(25, 30, 50, 0.8);
+      border-radius: 18px;
+      box-shadow: 0 4px 32px #1118;
+      padding: 28px 36px;
+      font-size: 1.35rem;
+      line-height: 1.7;
+      position: relative;
+      overflow: hidden;
+      animation: fadein 2s;
+    }
+    @keyframes fadein {
+      from {opacity: 0;transform: translateY(35px);}
+      to {opacity: 1;transform: translateY(0);}
+    }
+
+    .seasons {
+      max-width: 1100px;
+      margin: 60px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      padding-bottom: 100px;
+    }
+    .season {
+      background: linear-gradient(115deg, rgba(46, 60, 100, 0.96) 70%, rgba(110,30,232,0.14) 100%);
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #1118;
+      padding: 36px 36px 56px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s;
+    }
+    .season:hover {
+      transform: scale(1.012) rotate(-1deg);
+      box-shadow: 0 8px 60px #ff3b5cee;
+      z-index: 1;
+    }
+
+    .season-number {
+      font-size: 2.2rem;
+      color: #f9ff83;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px #232, 1px 1px 0 #222;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      animation: pulse 2s infinite alternate;
+    }
+    .season-title {
+      font-size: 1.6rem;
+      color: #ff3b5c;
+      margin-bottom: 22px;
+      text-shadow: 0 0 9px #6118, 0 1px 0 #fff2;
+    }
+    .season-desc {
+      font-size: 1.18rem;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+    .season-art {
+      position: absolute;
+      right: 20px;
+      bottom: 16px;
+      pointer-events: none;
+      opacity: 0.22;
+      filter: blur(1px) brightness(1.2);
+      width: 260px;
+      max-width: 40vw;
+      transition: opacity 0.5s;
+      z-index: 0;
+    }
+    .season:hover .season-art {
+      opacity: 0.45;
+      filter: blur(0.5px) brightness(1.5);
+    }
+
+    @keyframes pulse {
+      0% {text-shadow: 0 0 10px #232, 1px 1px 0 #222;}
+      100% {text-shadow: 0 0 30px #f9ff83, 1px 1px 0 #232;}
+    }
+
+    /* Fortnite Llama floating animation */
+    .llama {
+      position: fixed;
+      right: 60px;
+      bottom: 90px;
+      width: 120px;
+      z-index: 20;
+      animation: llama-float 3s infinite alternate ease-in-out;
+      filter: drop-shadow(0 0 18px #fff8);
+      cursor: pointer;
+      transition: transform .2s;
+    }
+    .llama:hover {
+      transform: scale(1.07) rotate(-7deg);
+    }
+    @keyframes llama-float {
+      0% {transform: translateY(0);}
+      100% {transform: translateY(-40px);}
+    }
+
+    /* Shooting star animation */
+    .star {
+      position: fixed;
+      top: -40px;
+      left: 50vw;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, #fff9 0%, #f9ff83 100%);
+      opacity: 0.2;
+      animation: star-shoot 6s linear infinite;
+      z-index: 50;
+    }
+    @keyframes star-shoot {
+      0% {left: 10vw; top: -30px; opacity: 0.2;}
+      10% {opacity: 1;}
+      100% {left: 85vw; top: 150px; opacity: 0;}
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .seasons { padding-left: 7px; padding-right: 7px; }
+      .season { padding: 18px 12px 36px 12px; }
+      .season-art { width: 120px; }
+      header h1 { font-size: 2.2rem; }
+      .llama { width: 64px; right: 7vw; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fortnite – Historia Sezonów</h1>
+  </header>
+  <div class="intro">
+    <strong>Fortnite</strong> to jedna z najbardziej przełomowych gier ostatniej dekady. Od premiery w 2017 roku przeszła przez dziesiątki sezonów, każdy wprowadzając nowe mechaniki, fabułę, skiny oraz wydarzenia zmieniające świat gry na oczach graczy.<br><br>
+    Przeżyjmy tę niesamowitą podróż przez wszystkie sezony Fortnite!
+  </div>
+  <div class="seasons" id="seasons"></div>
+
+  <!-- Llama -->
+  <img src="https://static.wikia.nocookie.net/fortnite_gamepedia/images/4/47/Loot_Llama_Render.png" alt="Llama" class="llama" title="Kliknij mnie!">
+
+  <!-- Shooting star -->
+  <div class="star"></div>
+
+  <script>
+    // Dane sezonów Fortnite – uproszczony opis do każdego sezonu
+    const seasons = [
+      {
+        num: "Sezon 1",
+        title: "Początek Bitwy Royale",
+        desc: "Premiera Fortnite Battle Royale – prostota, pierwsze skiny, bez battle passa, eksperymenty z mechaniką budowania i eksploracji. Brak większych wydarzeń, ale początek legendy!",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/7/7d/Default_Outfit.png"
+      },
+      {
+        num: "Sezon 2",
+        title: "Rycerze i pierwszy Battle Pass",
+        desc: "Pojawia się pierwszy Battle Pass – motyw rycerski, skiny jak Black Knight. Nowe miejscówki i mnóstwo świeżych wyzwań.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/4/49/Black_Knight_Render.png"
+      },
+      {
+        num: "Sezon 3",
+        title: "Kosmiczne przygody",
+        desc: "Motyw kosmiczny, pierwsze duże wydarzenia – meteoryt zbliża się do mapy, pojawiają się astronautyczne skiny, a gra zyskuje ogromną popularność.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/7/74/Dark_Voyager_Render.png"
+      },
+      {
+        num: "Sezon 4",
+        title: "Upadek Meteorytu",
+        desc: "Meteoryt uderza, niszczy Dusty Depot. Superbohaterski Battle Pass, pojawiają się wyzwania fabularne, a mapa ewoluuje.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/9/9c/Carbide_Render.png"
+      },
+      {
+        num: "Sezon 5",
+        title: "Światy się zderzają",
+        desc: "Motyw podróży w czasie i przestrzeni – pustynia, wikingowie, rzymskie miejscówki. Rifty zmieniają rozgrywkę.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/3/34/Drift_Render.png"
+      },
+      {
+        num: "Sezon 6",
+        title: "Ciemność powstaje",
+        desc: "Motyw halloweenowy, Latająca Wyspa, zombie na mapie, skiny jak Dusk i Calamity. Sezon pełen strachu i świetnych wydarzeń.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/c/c6/Calamity_Render.png"
+      },
+      {
+        num: "Sezon 7",
+        title: "Zima nadchodzi",
+        desc: "Wielka śnieżyca, nowy biom lodowy, samoloty X-4 Stormwing, świąteczne wydarzenia i wspaniałe zimowe skiny.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/9/9c/The_Ice_King_Render.png"
+      },
+      {
+        num: "Sezon 8",
+        title: "Piraci i wulkany",
+        desc: "Wyspa wulkaniczna, statki pirackie, nowe emocje. Motyw ognia i lawy, pojawia się skin Peely!",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/0/06/Peely_Render.png"
+      },
+      {
+        num: "Sezon 9",
+        title: "Neo Tilted",
+        desc: "Futurystyczna mapa, Neo Tilted, Slipstreamy. Technologiczny klimat i skiny robotów. Fortnite idzie w przyszłość.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/1/16/Vega_Render.png"
+      },
+      {
+        num: "Sezon 10",
+        title: "Czas Czarów",
+        desc: "Elementy ze wszystkich poprzednich sezonów mieszają się, pojawiają się mechy B.R.U.T.E. oraz burzliwe zmiany mapy.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/d/d0/Catalyst_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 1",
+        title: "Nowy Początek",
+        desc: "Całkowicie nowa mapa, łowienie ryb, łodzie, nowa mechanika XP. Fortnite odświeżony!",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/2/2e/Journey_vs_Hazard_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 2",
+        title: "Szpiedzy i Agenci",
+        desc: "Motyw szpiegowski, mityczne bronie, bossowie na mapie, Deadpool jako skin specjalny. Dużo tajnych baz.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/4/4b/Midas_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 3",
+        title: "Zalanie mapy",
+        desc: "Mapa częściowo zalana, rekiny, pojazdy wodne, Aquaman. Zmienność mapy z tygodnia na tydzień.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/b/b4/Aquaman_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 4",
+        title: "Marvel na Wyspie",
+        desc: "Wielka kolaboracja z Marvelem – Iron Man, Thor, Wolverine… Supermoce na polu bitwy!",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/7/7b/Iron_Man_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 5",
+        title: "Łowcy",
+        desc: "Motyw łowców z różnych uniwersów – Mandalorian, Predator, Kratos, Master Chief. Portal Zero Point szaleje.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/6/6c/The_Mandalorian_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 6",
+        title: "Prymitywność",
+        desc: "Pradawne technologie, łuki, zwierzęta na mapie, crafting. Powrót do korzeni przetrwania.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/0/0c/Tarana_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 7",
+        title: "Inwazja Obcych",
+        desc: "UFO, kosmici, nowe futurystyczne bronie. Kolaboracja z Rick & Morty, Supermanem i innymi.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/3/3c/Sunny_Render.png"
+      },
+      {
+        num: "Rozdział 2: Sezon 8",
+        title: "Kostki powracają",
+        desc: "Kevin Kostka i jego rodzina wracają, korupcja mapy, wydarzenie The End II kończy rozdział.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/b/b6/Cube_Queen_Render.png"
+      },
+      {
+        num: "Rozdział 3: Sezon 1",
+        title: "Odwrócona Wyspa",
+        desc: "Wyspa zostaje odwrócona, pojawia się Spider-Man, nowe mechaniki parkouru i ślizgania.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/0/0b/Spider-Man_Render.png"
+      },
+      {
+        num: "Rozdział 3: Sezon 2",
+        title: "Bez Budowania",
+        desc: "Tymczasowy tryb bez budowania podbija serca graczy! Walki czołgami i nowe bronie.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/f/fc/The_Imagined_Render.png"
+      },
+      {
+        num: "Rozdział 3: Sezon 3",
+        title: "Letnia Impreza",
+        desc: "Motyw wakacyjny, rośliny, wilki do jazdy, Darth Vader na mapie i dużo zabawy.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/5/5a/Darth_Vader_Render.png"
+      },
+      {
+        num: "Rozdział 3: Sezon 4",
+        title: "Chrom i Paradygmat",
+        desc: "Nowy materiał – Chrom. Transformacje, nowe mechaniki ruchu, event z Heroldem.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/5/5b/The_Herald_Render.png"
+      },
+      {
+        num: "Rozdział 4: Sezon 1",
+        title: "Nowy silnik, nowe możliwości",
+        desc: "Unreal Engine 5, nowa mapa, ruchome elementy, motywy średniowieczne, Geralt z Rivii.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/8/8d/Geralt_of_Rivia_Render.png"
+      },
+      {
+        num: "Rozdział 4: Sezon 2",
+        title: "Mega – Tokio",
+        desc: "Japoński klimat, Mega City, grind rails, futurystyczne motywy i świetne skiny.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/7/7e/Eren_Yeager_Render.png"
+      },
+      {
+        num: "Rozdział 4: Sezon 3",
+        title: "Dżungla",
+        desc: "Nowa dżungla na mapie, dinozaury, nowe bronie, rozwinięcie fabuły.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/5/56/Optimus_Prime_Render.png"
+      },
+      {
+        num: "Rozdział 4: Sezon 4",
+        title: "Heist",
+        desc: "Motyw napadów, sejfy, nowe pojazdy, walki z bossami, dużo akcji.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/e/ea/Kado_Thorne_Render.png"
+      },
+      {
+        num: "Rozdział 5: Sezon 1",
+        title: "Wielkie Przejęcie",
+        desc: "Nowa era Fortnite, nowa mapa, nowe mechaniki, współprace z LEGO, Rocket Racing i Fortnite Festival.",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/7/7b/Lego_Fortnite_Logo.png"
+      },
+      {
+        num: "Sezon Najnowszy",
+        title: "Fortnite dzisiaj",
+        desc: "Nieustannie rozwijający się świat, nowe tryby, niesamowite eventy na żywo, setki skinów i nieskończona zabawa!",
+        art: "https://static.wikia.nocookie.net/fortnite_gamepedia/images/2/2b/Fortnite_Logo_2023.png"
+      }
+    ];
+
+    // Render sezonów
+    const seasonsDiv = document.getElementById('seasons');
+    seasons.forEach((season, i) => {
+      const s = document.createElement('div');
+      s.className = "season";
+      s.innerHTML = `
+        <div class="season-number">${season.num} <span style="font-size:1.6rem;">🎮</span></div>
+        <div class="season-title">${season.title}</div>
+        <div class="season-desc">${season.desc}</div>
+        <img class="season-art" src="${season.art}" alt="${season.title}">
+      `;
+      // Animacja wejścia
+      s.style.opacity = 0;
+      s.style.transform = "translateY(65px) scale(0.97)";
+      setTimeout(() => {
+        s.style.transition = "opacity 0.9s cubic-bezier(.5,1.5,.2,1), transform 1.3s cubic-bezier(.42,1.49,.2,1)";
+        s.style.opacity = 1;
+        s.style.transform = "translateY(0) scale(1)";
+      }, 120 + i * 170);
+      seasonsDiv.appendChild(s);
+    });
+
+    // Llama klik – animacja i żart
+    document.querySelector('.llama').addEventListener('click', () => {
+      const old = document.querySelector('.llama');
+      old.style.transition = "transform .6s cubic-bezier(.5,-0.3,.2,1)";
+      old.style.transform = "scale(2.5) rotate(720deg)";
+      setTimeout(() => {
+        alert("Znalazłeś lamę! Oby wypadł złoty loot!");
+        old.style.transform = "";
+      }, 900);
+    });
+
+    // Dodawanie większej ilości gwiazd
+    for (let i = 0; i < 7; i++) {
+      const s = document.createElement('div');
+      s.className = "star";
+      s.style.top = (-20 - i*30) + "px";
+      s.style.left = (10 + Math.random() * 70) + "vw";
+      s.style.animationDelay = (Math.random()*6) + "s";
+      s.style.opacity = .10 + Math.random()*0.38;
+      s.style.width = (40 + Math.random()*70) + "px";
+      document.body.appendChild(s);
+    }
+  </script>
+</body>
+</html>
